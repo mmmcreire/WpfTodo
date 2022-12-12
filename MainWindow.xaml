@@ -4,10 +4,75 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Todo"
+        xmlns:viewModel="clr-namespace:Todo.MVVM.ViewModel"
         mc:Ignorable="d"
-        Height="450" 
-        Width="800">
-    <Grid>
-        
-    </Grid>
+        Height="600" 
+        Width="920"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True">
+    
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+    
+    <Border Background="#272537"
+            CornerRadius="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200">
+                </ColumnDefinition>
+                <ColumnDefinition Width="200">
+                </ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75">
+                </RowDefinition>
+                <RowDefinition Height="200">
+                </RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <TextBlock  Text="My Todo"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="20,0,0,0"
+                        Foreground="White"
+                        FontSize="22"
+                        FontFamily="/Fonts/#Poppins"/>
+            <StackPanel Grid.Row="1">
+                <RadioButton Content="Home"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             IsChecked="True"
+                             Command="{Binding HomeViewCmd}"/>
+                <RadioButton Content="Motorola"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding AgendaViewCmd}"/>
+                <RadioButton Content="About me"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding AboutMeViewCmd}"/>
+            </StackPanel>
+            <TextBox Width="250"
+                     Height="40"
+                     VerticalContentAlignment="Center"
+                     HorizontalAlignment="Left"
+                     Margin="5"
+                     Grid.Column="1"
+                     Style="{StaticResource ModernTextbox}"/>
+            <ContentControl Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10,10,-489,-297"
+                            Content="{Binding CurrentView}"/>
+        </Grid>
+
+    </Border>
 </Window>
